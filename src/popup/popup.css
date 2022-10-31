@@ -101,7 +101,6 @@ input:checked + .slider:before {
 
 #beta {
   color:rgb(122,130,160);
-  margin-left:4px;
   font-size: 11px;
 }
 
@@ -110,6 +109,7 @@ input:checked + .slider:before {
   margin-bottom: 2px;
   margin-right: 5px;
   color: rgb(122,130,160);
+  text-decoration: underline;
 }
 
 .gitlink {
