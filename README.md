@@ -26,6 +26,8 @@ Please, open an Issue to ask support for a service, feature or for a specific sk
 :white_check_mark: Opera  
 :black_square_button: Firefox (waiting for manifest v3 support)  
 
+## How does it works?
+The extension verify periodically for the presence of HTMLElements using a given selector(s). When found, it emulates the user click on it. Therefore, this extension can only work with series/movies/episodes that support skipping functions.
 
 ## Todo
  - [ ] Publish into browsers stores
@@ -33,7 +35,7 @@ Please, open an Issue to ask support for a service, feature or for a specific sk
  - [ ] Add support for Firefox
  - [ ] Collect feedbacks for PrimeVideo Ads skipper, still in BETA
  - [ ] Switch to Typescript
- - [ ] Improve `popup.html/popup.js` to generate HTML by reading `config.js`
+ - [x] Improve `popup.html/popup.js` to generate HTML by reading `config.js`
  - [ ] Switch to [MutationObserver Api](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver)
 
 

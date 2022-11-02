@@ -1,0 +1,39 @@
+name: Build and Release
+
+on:
+  push:
+    branches:
+      - "master"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 16
+        cache: 'npm'
+    - run: npm ci
+    - run: npm run zip --if-present
+    - name: Upload zip to github artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: zip
+        path: "*.zip"
+
+  release:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+    - uses: actions/download-artifact@v3
+      with:
+        name: zip
+    - run: echo "V=$(sed 's/.*v\(.*\).zip.*/\1/' <<< $(ls *.zip))" >> $GITHUB_ENV 
+    - uses: "marvinpinto/action-automatic-releases@latest"
+      with:
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        automatic_release_tag: ${{ env.V }}
+        prerelease: false
+        files: |
+          *.zip
